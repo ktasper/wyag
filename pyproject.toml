@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "wyag"
+version = "0.1.0"
+description = "Write yourself a git"
+authors = ["Karl Webster <19327709+ktasper@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
