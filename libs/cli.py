@@ -4,17 +4,20 @@ Contains the logic for the CLI interface
 
 import argparse
 import sys
+from .version import cmd_version
+import os
 
-argparser = argparse.ArgumentParser(description="The stupidest content tracker")
+argparser = argparse.ArgumentParser(description="The stupidest content tracker", exit_on_error=False)
 argsubparsers = argparser.add_subparsers(title="Commands", dest="command")
 argsubparsers.required = True
+argsp = argsubparsers.add_parser("version", help="Prints version info")
 
 
 def main(argv=sys.argv[1:]) -> None:
     """
     The logic for the CLI interface
     """
-    args = argparser.parse_args(argv)
+    args: argparse.Namespace = argparser.parse_args(argv)
     match args.command:
         case "add":
             cmd_add(args)
@@ -46,5 +49,7 @@ def main(argv=sys.argv[1:]) -> None:
             cmd_status(args)
         case "tag":
             cmd_tag(args)
+        case "version":
+            cmd_version(args)
         case _:
             print("Bad command.")
