@@ -1,9 +1,10 @@
 """
 Handlers for the version command
 """
-from argparse import Namespace
-import tomllib
+
 import sys
+import tomllib
+from argparse import Namespace
 
 
 def cmd_version(args: Namespace) -> None:
@@ -19,4 +20,4 @@ def get_version(args: Namespace) -> str:
     """
     with open("./pyproject.toml", "rb") as f:  # Open in binary mode
         data = tomllib.load(f)
-        return data['tool']['poetry']['version']
+        return data["tool"]["poetry"]["version"]

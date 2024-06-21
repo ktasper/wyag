@@ -1,7 +1,8 @@
-from unittest.mock import patch
-from libs.version import cmd_version, get_version
-from argparse import Namespace
 import io
+from argparse import Namespace
+from unittest.mock import patch
+
+from libs.version import cmd_version, get_version
 
 
 @patch("libs.version.get_version")
@@ -24,11 +25,13 @@ def test_get_version(mock_open):
     file and returns the version as a string.
     """
     # Mock file content with expected data
-    mock_file = io.BytesIO(b"""
+    mock_file = io.BytesIO(
+        b"""
     [tool.poetry]
     name = "wyag"
     version = "2.3.4"
-    """)
+    """
+    )
     mock_open.return_value = mock_file
     args = Namespace()
     version = get_version(args)

@@ -3,11 +3,14 @@ Contains the logic for the CLI interface
 """
 
 import argparse
-import sys
-from .version import cmd_version
 import os
+import sys
 
-argparser = argparse.ArgumentParser(description="The stupidest content tracker", exit_on_error=False)
+from .version import cmd_version
+
+argparser = argparse.ArgumentParser(
+    description="The stupidest content tracker", exit_on_error=False
+)
 argsubparsers = argparser.add_subparsers(title="Commands", dest="command")
 argsubparsers.required = True
 argsp = argsubparsers.add_parser("version", help="Prints version info")
