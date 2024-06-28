@@ -1,4 +1,3 @@
-import io
 from argparse import Namespace
 from unittest.mock import patch
 
@@ -19,20 +18,12 @@ def test_cmd_version(mock_get_version, capsys):
 
 
 @patch("builtins.open", autospec=True)  # Mock open function
-def test_get_version(mock_open):
+def test_get_version(mock_open, toml_file):
     """
     Tests the get_version function can read a toml
     file and returns the version as a string.
     """
-    # Mock file content with expected data
-    mock_file = io.BytesIO(
-        b"""
-    [tool.poetry]
-    name = "wyag"
-    version = "2.3.4"
-    """
-    )
-    mock_open.return_value = mock_file
+    mock_open.return_value = toml_file
     args = Namespace()
     version = get_version(args)
     # Assert returned version matches mock data
